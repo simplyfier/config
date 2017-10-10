@@ -1,6 +1,6 @@
 <?php
 /**
- * StupidlySimple Framework - A PHP Framework For Lazy Developers
+ * StupidlySimple Framework - A PHP Framework For Lazy Developers.
  *
  * Copyright (c) 2017 Fariz Luqman
  *
@@ -22,17 +22,18 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * @package     StupidlySimple
  * @author      Fariz Luqman <fariz.fnb@gmail.com>
  * @copyright   2017 Fariz Luqman
  * @license     MIT
+ *
  * @link        https://stupidlysimple.github.io/
  */
+
 namespace Simplyfier;
 
 /**
  * The Configuration Loader
- * -----------------------------------------------------------------------
+ * -----------------------------------------------------------------------.
  *
  * The Configuration loader are responsible to read and return the
  * configurations in a form of array.
@@ -45,44 +46,45 @@ namespace Simplyfier;
  *    $config = Config::get('filename', 'configuration_key');
  *
  * @since 0.5.0
- *
  */
 class Config
 {
     /**
-     * The array of configuration from config/env.php
+     * The array of configuration from config/env.php.
+     *
      * @var array
-     * @access protected
      * @static
+     *
      * @since 0.5.0
      */
     protected static $env = null;
 
     /**
-     * The array of configuration from files located on config directory
+     * The array of configuration from files located on config directory.
+     *
      * @var array
-     * @access protected
      * @static
+     *
      * @since 0.5.0
      */
     protected static $hive = null;
 
     /**
-     * Link a variable or an object to the container
+     * Link a variable or an object to the container.
      *
      * @param string $file the configuration file name (without .php)
-     * @param string $key the array key
+     * @param string $key  the array key
      *
-     * @return array    $hive    the array of configurations
+     * @return array $hive    the array of configurations
      *
      * @static
-     * @access public
+     *
      * @since 0.5.0
      */
     public static function get($file, $key = null)
     {
         if (isset(self::$hive[$file]) === false) {
-            self::$hive[$file] = include_once(SS_PATH . '/config/' . $file . '.php');
+            self::$hive[$file] = include_once SS_PATH.'/config/'.$file.'.php';
         }
 
         if ($key === null) {
@@ -95,20 +97,20 @@ class Config
     /**
      * Reads the configuration file (config/env.php) and include each of the
      * variables (retrieved in a form of associative array) to the Environment
-     * Variable. Also store the configurations into static variable $env
+     * Variable. Also store the configurations into static variable $env.
      *
      * @static
-     * @access public
+     *
      * @since 0.5.0
      */
     public static function setEnv()
     {
         if (self::$env === null) {
-            self::$env = require_once(SS_PATH . '/config/env.php');
+            self::$env =  require_once(SS_PATH.'/config/env.php');
         }
 
         foreach (self::$env as $v => $a) {
-            putenv($v . '=' . $a);
+            putenv($v.'='.$a);
         }
     }
 }
